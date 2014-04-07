@@ -442,7 +442,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
               $document.find('body').append($popup);
             } else {
               element.after($popup);
-            }  
+            }
           }
         } else {
           $document.unbind('click', documentClickBind);
