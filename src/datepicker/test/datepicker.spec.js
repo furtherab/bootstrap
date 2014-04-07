@@ -844,7 +844,7 @@ describe('datepicker directive', function () {
       });
 
       it('does not to display datepicker initially', function() {
-        expect(dropdownEl).toBeHidden();
+        expect(dropdownEl.length).toBe(0);
       });
 
       it('displays datepicker on input focus', function() {
@@ -853,6 +853,7 @@ describe('datepicker directive', function () {
       });
 
       it('renders the calendar correctly', function() {
+        inputEl.focus();
         expect(getLabelsRow().css('display')).not.toBe('none');
         expect(getLabels()).toEqual(['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']);
         expect(getOptions(true)).toEqual([
@@ -865,12 +866,14 @@ describe('datepicker directive', function () {
       });
 
       it('updates the input when a day is clicked', function() {
+        inputEl.focus();
         clickOption(17);
         expect(inputEl.val()).toBe('2010-09-15');
         expect($rootScope.date).toEqual(new Date('September 15, 2010 15:30:00'));
       });
 
       it('should mark the input field dirty when a day is clicked', function() {
+        inputEl.focus();
         expect(inputEl).toHaveClass('ng-pristine');
         clickOption(17);
         expect(inputEl).toHaveClass('ng-dirty');
@@ -891,6 +894,7 @@ describe('datepicker directive', function () {
       });
 
       it('updates the model & calendar when input value changes', function() {
+        inputEl.focus();
         changeInputValueTo(inputEl, 'March 5, 1980');
 
         expect($rootScope.date.getFullYear()).toEqual(1980);
