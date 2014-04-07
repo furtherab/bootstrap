@@ -427,6 +427,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
         });
       };
 
+      var $popup;
       scope.$watch('isOpen', function(value) {
         if (value) {
           scope.position = appendToBody ? $position.offset(element) : $position.position(element);
@@ -435,6 +436,15 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
           $document.bind('click', documentClickBind);
           element.unbind('focus', openCalendar);
           element[0].focus();
+
+          if (!$popup) {
+            $popup = $compile(popupEl)(scope);
+            if ( appendToBody ) {
+              $document.find('body').append($popup);
+            } else {
+              element.after($popup);
+            }
+          }
         } else {
           $document.unbind('click', documentClickBind);
           element.bind('focus', openCalendar);
@@ -454,15 +464,10 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
         scope.dateSelection( date );
       };
 
-      var $popup = $compile(popupEl)(scope);
-      if ( appendToBody ) {
-        $document.find('body').append($popup);
-      } else {
-        element.after($popup);
-      }
-
       scope.$on('$destroy', function() {
-        $popup.remove();
+        if ($popup) {
+          $popup.remove();
+        }
         element.unbind('focus', openCalendar);
         $document.unbind('click', documentClickBind);
       });
