@@ -438,6 +438,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
           element[0].focus();
 
           if (!$popup) {
+            $popup = $compile(popupEl)(scope);
             if ( appendToBody ) {
               $document.find('body').append($popup);
             } else {
