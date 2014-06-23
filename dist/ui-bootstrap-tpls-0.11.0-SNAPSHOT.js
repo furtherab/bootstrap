@@ -2,7 +2,7 @@
  * angular-ui-bootstrap
  * http://angular-ui.github.io/bootstrap/
 
- * Version: 0.11.0-SNAPSHOT - 2014-06-20
+ * Version: 0.11.0-SNAPSHOT - 2014-06-23
  * License: MIT
  */
 angular.module("ui.bootstrap", ["ui.bootstrap.tpls", "ui.bootstrap.transition","ui.bootstrap.collapse","ui.bootstrap.accordion","ui.bootstrap.alert","ui.bootstrap.bindHtml","ui.bootstrap.buttons","ui.bootstrap.carousel","ui.bootstrap.position","ui.bootstrap.datepicker","ui.bootstrap.dropdown","ui.bootstrap.modal","ui.bootstrap.pagination","ui.bootstrap.tooltip","ui.bootstrap.popover","ui.bootstrap.progressbar","ui.bootstrap.rating","ui.bootstrap.tabs","ui.bootstrap.timepicker","ui.bootstrap.typeahead"]);
@@ -1246,6 +1246,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
 
         if ( closeOnDateSelection ) {
           scope.isOpen = false;
+          element[0].focus();
         }
       };
 
@@ -1283,7 +1284,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
           scope.position.top = scope.position.top + element.prop('offsetHeight');
 
           $document.bind('click', documentClickBind);
-          element.unbind('focus', openCalendar);
+          //element.unbind('focus', openCalendar);
           element[0].focus();
 
           if (!$popup) {
@@ -1296,7 +1297,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
           }
         } else {
           $document.unbind('click', documentClickBind);
-          element.bind('focus', openCalendar);
+          //element.bind('focus', openCalendar);
         }
       });
 
@@ -1317,7 +1318,7 @@ function ($compile, $parse, $document, $position, dateFilter, datepickerPopupCon
         if ($popup) {
           $popup.remove();
         }
-        element.unbind('focus', openCalendar);
+        //element.unbind('focus', openCalendar);
         $document.unbind('click', documentClickBind);
       });
     }
