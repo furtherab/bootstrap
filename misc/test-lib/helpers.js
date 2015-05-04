@@ -13,6 +13,9 @@ beforeEach(function() {
       var element = angular.element(this.actual);
       return element.hasClass('ng-hide') ||
         element.css('display') == 'none';
+    },
+    toBeGone: function() {
+      return this.actual.length === 0;
     }
   });
 });
